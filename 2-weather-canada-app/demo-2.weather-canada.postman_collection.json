@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "1b864969-4b16-4c1e-a416-8085dcbaacc0",
+		"name": "demo-2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "2-weather-canada",
+			"item": [
+				{
+					"name": "Get sites by province",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sites/bc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sites",
+								"bc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get weather by station",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sites/weather/bc/s0000002/current/temperature",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sites",
+								"weather",
+								"bc",
+								"s0000002",
+								"current",
+								"temperature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get weather by station 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sites/weather/bc/s0000003/current/temperature",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sites",
+								"weather",
+								"bc",
+								"s0000003",
+								"current",
+								"temperature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start job by province",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sites/start-job/ns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sites",
+								"start-job",
+								"ns"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
