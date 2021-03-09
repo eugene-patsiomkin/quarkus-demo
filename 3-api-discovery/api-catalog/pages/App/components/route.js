@@ -72,7 +72,7 @@ class RouteInfo extends Component {
                         <section>
                             {
                                 route.type.toLowerCase() == "cert" ?
-                                    <RequestAccess route_id={route.name} /> : <AccessKey route_id={route.name} key_duration={604800}/>
+                                    <RequestAccess route_id={route.name} /> : <AccessKey route_id={route.name} key_duration={86400}/>
                             }
                         </section>
                     </div>
