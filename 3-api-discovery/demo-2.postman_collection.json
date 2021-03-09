@@ -1,0 +1,1493 @@
+{
+	"info": {
+		"_postman_id": "1b864969-4b16-4c1e-a416-8085dcbaacc0",
+		"name": "demo-2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "2-weather-canada",
+			"item": [
+				{
+					"name": "Get sites by province",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sites/bc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sites",
+								"bc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get weather by station",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sites/weather/bc/s0000002/current/temperature",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sites",
+								"weather",
+								"bc",
+								"s0000002",
+								"current",
+								"temperature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get weather by station 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sites/weather/bc/s0000003/current/temperature",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sites",
+								"weather",
+								"bc",
+								"s0000003",
+								"current",
+								"temperature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start job by province",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sites/start-job/ns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sites",
+								"start-job",
+								"ns"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3-api-key",
+			"item": [
+				{
+					"name": "api-app",
+					"item": [
+						{
+							"name": "step 1 - create-service",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "api-catalog",
+											"type": "text"
+										},
+										{
+											"key": "url",
+											"value": "http://moti-api-catalog:3000",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "api_catalog",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "step 2 - create-route paths",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "paths[]",
+											"value": "/api-catalog",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "api-catalog-route",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services/api-catalog/routes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services",
+										"api-catalog",
+										"routes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "events_setup_autodiscover",
+					"item": [
+						{
+							"name": "service events",
+							"item": [
+								{
+									"name": "step 1 - create-service-root-doc",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "moti.events.api.discover.docs",
+													"type": "text"
+												},
+												{
+													"key": "url",
+													"value": "http://moti-events:8080/api-docs/",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "api",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "events",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "type~docs",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "tags",
+													"value": "description~Event_api._Is_the_best_api",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "title~Event_api_v1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 2 - create-route-docs",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "paths[]",
+													"value": "/api/events/v2/docs",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "event.v2.docs",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "type~documentation_link",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services/moti.events.api.discover.docs/routes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services",
+												"moti.events.api.discover.docs",
+												"routes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 3 - create-endpoint-service",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "moti.events.api.discover",
+													"type": "text"
+												},
+												{
+													"key": "url",
+													"value": "http://moti-events:8080",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "api",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "events",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "type~endpoint",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "root~moti.events.api.discover.docs",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "tags",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 4 - create-route-read",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "paths[]",
+													"value": "/api/events.v2/",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "event.v2.read.endpoint",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "group~authkey",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "acl~read-event",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "GET",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services/moti.events.api.discover/routes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services",
+												"moti.events.api.discover",
+												"routes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 5 - create-route-write",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "paths[]",
+													"value": "/api/events.v2.full/",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "event.v2.read.write.endpoint",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "group~cert",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "acl~write-event",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "GET",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "PUT",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "POST",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "PATCH",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "DELETE",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services/moti.events.api.discover/routes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services",
+												"moti.events.api.discover",
+												"routes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 6 - add-service-plugin key-auth",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "key-auth",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "events",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/routes/event.v2.read.endpoint/plugins",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"routes",
+												"event.v2.read.endpoint",
+												"plugins"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 7 - add-service-plugin ACL",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "acl",
+													"type": "text"
+												},
+												{
+													"key": "config.allow",
+													"value": "read-event",
+													"type": "text"
+												},
+												{
+													"key": "config.hide_groups_header",
+													"value": "true",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "events",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/routes/event.v2.read.endpoint/plugins",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"routes",
+												"event.v2.read.endpoint",
+												"plugins"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "service images",
+							"item": [
+								{
+									"name": "step 1 - create-service-root-doc",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "moti.images.api.discover.docs",
+													"type": "text"
+												},
+												{
+													"key": "url",
+													"value": "http://moti-images:8080/api-docs/",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "api",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "images",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "type~docs",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "docs~moti.images.api.discover",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "description~Images_and_camera_api._Is_the_best_api._And_you_know_it.",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "title~Images_and_cameras_api_v1",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "camera",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 2 - create-route-docs",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "paths[]",
+													"value": "/api/images/v2/docs",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "images.v2.docs",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "type~documentation_link",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services/moti.images.api.discover.docs/routes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services",
+												"moti.images.api.discover.docs",
+												"routes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 3 - create-endpoint-service",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "moti.images.api.discover",
+													"type": "text"
+												},
+												{
+													"key": "url",
+													"value": "http://moti-images:8080",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "api",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "images",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "type~endpoint",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "root~moti.images.api.discover.docs",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "tags",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 4 - create-route-read",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "paths[]",
+													"value": "/api/images.v2/",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "images.v2.read.endpoint",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "group~authkey",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "acl~read-images",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "GET",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services/moti.images.api.discover/routes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services",
+												"moti.images.api.discover",
+												"routes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 5 - create-route-write",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "paths[]",
+													"value": "/api/events.v2.full/",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "images.v2.read.write.endpoint",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "group~cert",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "acl~write-images",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "GET",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "PUT",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "POST",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "PATCH",
+													"type": "text"
+												},
+												{
+													"key": "methods",
+													"value": "DELETE",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/services/moti.images.api.discover/routes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"services",
+												"moti.images.api.discover",
+												"routes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 6 - add-service-plugin key-auth",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "key-auth",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "images",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/routes/images.v2.read.endpoint/plugins",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"routes",
+												"images.v2.read.endpoint",
+												"plugins"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "step 7 - add-service-plugin ACL",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "acl",
+													"type": "text"
+												},
+												{
+													"key": "config.allow",
+													"value": "read-images",
+													"type": "text"
+												},
+												{
+													"key": "config.hide_groups_header",
+													"value": "true",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "images",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8001/routes/images.v2.read.endpoint/plugins",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8001",
+											"path": [
+												"routes",
+												"images.v2.read.endpoint",
+												"plugins"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "add-consumer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "new-customer",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/consumers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"consumers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "service weather canada",
+					"item": [
+						{
+							"name": "step 0 -open api",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "moti.weather.api.discover.openapi",
+											"type": "text"
+										},
+										{
+											"key": "url",
+											"value": "http://camel-integration:8080/q/openapi/",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "api",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "weather",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "canada",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "openapi",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "step 0.5 - openapi route",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "tags",
+											"value": "canada",
+											"type": "text"
+										},
+										{
+											"key": "paths",
+											"value": "/q/openapi",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "weather.canada.openapi.route",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services/moti.weather.api.discover.openapi/routes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services",
+										"moti.weather.api.discover.openapi",
+										"routes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "step 1 - create-service-root-doc",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "moti.weather.api.discover.docs",
+											"type": "text"
+										},
+										{
+											"key": "url",
+											"value": "http://camel-integration:8080/q/swagger-ui/",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "api",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "weather",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "type~docs",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "docs~moti.weather.api.discover",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "description~Cool_api_integration_with_weather_canada.",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "title~Weather_canada_integration_api_v1",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "canada",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "step 2 - create-route-docs",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "paths[]",
+											"value": "/api/weather/v1/docs",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "weather.v1.docs",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "type~documentation_link",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services/moti.weather.api.discover.docs/routes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services",
+										"moti.weather.api.discover.docs",
+										"routes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "step 3 - create-endpoint-service",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "moti.weather.api.discover",
+											"type": "text"
+										},
+										{
+											"key": "url",
+											"value": "http://camel-integration:8080",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "api",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "weather",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "type~endpoint",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "root~moti.weather.api.discover.docs",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "tags",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "step 4 - create-route-all",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "paths[]",
+											"value": "/sites/api/v1",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "moti.weather.api.discover",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "group~authkey",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "acl~all-weather",
+											"type": "text"
+										},
+										{
+											"key": "methods",
+											"value": "GET",
+											"type": "text"
+										},
+										{
+											"key": "methods",
+											"value": "POST",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services/moti.weather.api.discover/routes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services",
+										"moti.weather.api.discover",
+										"routes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "step 5 - add-service-plugin key-auth",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "key-auth",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "weather",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/routes/moti.weather.api.discover/plugins",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"routes",
+										"moti.weather.api.discover",
+										"plugins"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "weather-canada",
+					"item": [
+						{
+							"name": "Get sites by province",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "apikey",
+										"value": "BR4mOUXQ8DASuuffQo87AdfpQG23rMDi",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://localhost:8000/sites/api/v1/sites/bc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"sites",
+										"api",
+										"v1",
+										"sites",
+										"bc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get weather by station",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "apikey",
+										"value": "BR4mOUXQ8DASuuffQo87AdfpQG23rMDi",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/sites/api/v1/sites/weather/bc/s0000002/current/temperature",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"sites",
+										"api",
+										"v1",
+										"sites",
+										"weather",
+										"bc",
+										"s0000002",
+										"current",
+										"temperature"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get weather by station 404",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "apikey",
+										"value": "BR4mOUXQ8DASuuffQo87AdfpQG23rMDi",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/sites/api/v1/sites/weather/bc/s0000003/current/temperature",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"sites",
+										"api",
+										"v1",
+										"sites",
+										"weather",
+										"bc",
+										"s0000003",
+										"current",
+										"temperature"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Start job by province",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "apikey",
+										"value": "BR4mOUXQ8DASuuffQo87AdfpQG23rMDi",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/sites/api/v1/sites/start-job/ns",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"sites",
+										"api",
+										"v1",
+										"sites",
+										"start-job",
+										"ns"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

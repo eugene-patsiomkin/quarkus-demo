@@ -1,0 +1,100 @@
+openapi: '3.0.2'
+info:
+  title: API Images
+  version: '0.1.0'
+servers:
+  - url: https://api.server.test/v1
+tags:
+  - name: Administration
+    description: Endpoints to be consumed through administration ui
+  - name: Images
+    description: Images proxy api
+  - name: Camera
+    description: Camera storage API
+paths:
+  /images/{image_id}/current:
+    get:
+      tags: [Images]
+      description: Return list of images
+      parameters:
+        - in: path
+          name: image_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+
+  /cameras/{camera_id}:
+    get:
+      tags: [Camera]
+      description: Return list of cameras
+      parameters:
+        - in: path
+          name: image_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Camera"
+  /cameras:
+    get:
+      tags: [Camera]
+      description: Return list of cameras
+      parameters:
+        - in: query
+          name: geofence
+          required: false
+          schema:
+            type: string
+            description: Predefined geofence uuid.
+            example: e69f50d6-2dab-11eb-adc1-0242ac120002 
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Camera"
+    post:
+      tags: [Camera]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CameraReq"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/CameraReq"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Camera"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Camera"
+components:
+  schemas:
+    CameraReq:
+      type: object
+    Camera:
+      type: object
